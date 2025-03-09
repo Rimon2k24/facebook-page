@@ -1,61 +1,25 @@
-/* General Styles */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #e9ebee;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+// Handle login process with Firebase
+function handleLogin() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    if (email && password) {
+        auth.signInWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                alert("Login Successful!");
+                // After login, redirect to home page
+                window.location.href = "home.html";
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                alert("Error: " + errorMessage);
+            });
+    } else {
+        alert("Please fill in both fields.");
+    }
 }
 
-/* Login container styles */
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-.login-box {
-    background-color: white;
-    width: 350px;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-h1 {
-    color: #1877f2;
-    font-size: 40px;
-    margin-bottom: 30px;
-}
-
-/* Input Fields */
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #1877f2;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #3b5998;
-}
 
 /* Extra options */
 .extra-options {
